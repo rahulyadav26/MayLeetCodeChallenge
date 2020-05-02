@@ -1,0 +1,15 @@
+class Solution {
+    public int numJewelsInStones(String J, String S) {
+        HashMap<Character,Integer> jMap = new HashMap<>();
+        int track=0;
+        for(int i=0;i<J.length();i++){
+            jMap.put(J.charAt(i),1);
+        }
+        for(int i=0;i<S.length();i++){
+            if(jMap.containsKey(S.charAt(i))){
+                track++;
+            }
+        }
+        return track;
+    }
+}
