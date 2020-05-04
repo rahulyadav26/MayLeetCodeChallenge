@@ -1,0 +1,16 @@
+class Solution {
+    public int findComplement(int num) {
+        int bit;
+        int ans=0;
+        int track=0;
+        while(num!=0){
+            bit=num%2;
+            num/=2;
+            if(bit==0){
+                ans+=Math.pow(2,track);
+            }
+            track++;
+        }
+        return ans;
+    }
+}
