@@ -1,0 +1,48 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+class Solution {
+    //t depth=0;
+    public boolean isCousins(TreeNode root, int x, int y) {
+        int[] xarr = findVal(root,x,-1,0);
+        int[] yarr = findVal(root,y,-1,0);
+        //System.out.println(xarr[0]+ " " +xarr[1]);
+        //System.out.println(yarr[0]+" " +yarr[1]);
+        if(xarr[0]!=yarr[0] && xarr[1]==yarr[1]){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
+    public int[] findVal(TreeNode root,int val,int parent,int depth){
+        if(root!=null){
+            if(root.val==val){
+                return new int[]{parent,depth};
+            }
+            else{
+                int[] arr = findVal(root.left,val,root.val,depth+1);
+                if(arr[1]==-1){
+                    arr = findVal(root.right,val,root.val,depth+1);
+                }
+                return arr;
+            }
+        }
+        else{
+            return new int[]{-1,-1};
+        }
+    }    
+}
