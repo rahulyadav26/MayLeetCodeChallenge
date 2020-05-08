@@ -1,0 +1,17 @@
+class Solution {
+    public boolean checkStraightLine(int[][] coordinates) throws ArithmeticException {
+        int[] one = coordinates[0];
+        int[] two = coordinates[1];
+        double m = (double)(two[1]-one[1])/(double)(two[0]-one[0]);
+        double diff = m*(double)one[0]-(double)one[1];
+        for(int i=2;i<coordinates.length;i++){
+            int[] point = coordinates[i];
+            double val = m*(double)point[0]-(double)point[1];
+            //System.out.println("val is " + val + " diff is "+diff);
+            if(val!=diff){
+                return false;
+            }
+        }
+        return true;
+    }
+}
