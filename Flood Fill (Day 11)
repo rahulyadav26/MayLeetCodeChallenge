@@ -1,0 +1,24 @@
+class Solution {
+    public int[][] floodFill(int[][] image, int sr, int sc, int newColor) {
+        if (image==null || image.length==0 || image[sr][sc]==newColor){
+            return image;  
+        } 
+        int source = image[sr][sc];
+        update(image,sr,sc,source,newColor);
+        return image;
+    }
+    
+    public void update(int[][] image,int sr,int sc,int source,int newColor){
+        if(sr<0 || sr>=image.length || sc<0 || sc>=image[0].length || image[sr][sc]!=source){
+            return;
+        }
+        if(image[sr][sc]==source){
+            image[sr][sc]=newColor;
+        }
+        update(image,sr-1,sc,source,newColor);
+        update(image,sr+1,sc,source,newColor);
+        update(image,sr,sc+1,source,newColor);
+        update(image,sr,sc-1,source,newColor);
+    }
+    
+}
